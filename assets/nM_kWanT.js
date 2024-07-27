@@ -1,0 +1,1 @@
+import{_ as o}from"./BT9j90RZ.js";import{n,_ as s,c as a,a as e,b as c,w as _,o as r,d as l}from"./DaBlN6Iu.js";const i=n("/profile.jpeg"),u={},d=e("h1",null,"About",-1),m=e("img",{src:i,loading:"lazy"},null,-1);function p(f,x){const t=o;return r(),a("main",null,[e("div",null,[d,c(t,{to:"/"},{default:_(()=>[l("Home")]),_:1})]),m])}const N=s(u,[["render",p]]);export{N as default};
