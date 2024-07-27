@@ -1,0 +1,1 @@
+import{f as o,o as e,c as s,a as n,t,n as l}from"./D4Wsq6jV.js";const c={class:"material-symbols-outlined"},u=o({__name:"Fab",props:{icon:String,absolute:Boolean,shadow:Boolean},setup(a){return(r,i)=>(e(),s("div",{class:l(["flex shadow-xl rounded-full cursor-pointer z-10",{absolute:a.absolute,"shadow-xl":a.shadow}])},[n("span",c,t(a.icon),1)],2))}});export{u as _};
