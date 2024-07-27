@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center py-2 px-6 border-solid border-2 gap-8 w-max">
     <div class="w-4 h-4 rounded-full" :class="[bgColor]"></div>
-    <NuxtImg class="w-24 h-12 object-cover" :src="product.photo" />
+    <img class="w-24 h-12 object-contain" :src="product.photo" />
 
     <!-- Title -->
     <div class="w-52">
@@ -67,7 +67,7 @@
 
     <!-- Delete -->
     <div class="ml-6">
-      <span class="material-symbols-outlined"> delete </span>
+      <span class="material-symbols-outlined text-gray-500"> delete </span>
     </div>
   </div>
 </template>

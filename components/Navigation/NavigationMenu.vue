@@ -1,13 +1,14 @@
 <template>
   <div class="sidebar flex flex-col text-center items-center shadow-2xl">
     <div class="relative">
-      <NuxtImg
+      <img
         class="sidebar__image my-12 rounded-full object-cover"
-        src="/profile.jpeg"
+        src="/profile.jpg"
       />
       <Fab
         class="right-0 bottom-10 bg-white p-4"
         icon="settings"
+        iconClass="text-gray-600"
         absolute
         shadow
       />

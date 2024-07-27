@@ -52,7 +52,7 @@
                 class="w-4 h-4 rounded-full"
                 :class="[getStatusColor(product.status)]"
               ></div>
-              <NuxtImg class="w-24 h-12 object-cover" :src="product.photo" />
+              <img class="w-24 h-12 object-contain" :src="product.photo" />
 
               <div class="grow">
                 <p class="text-lg underline">{{ product.title }}</p>

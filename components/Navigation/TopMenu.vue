@@ -20,7 +20,7 @@
       <p class="text-lg">{{ currentDayName }}</p>
       <p class="items-center flex text-sm">
         <span class="mr-3">{{ currentDate }} </span>
-        <span class="material-symbols-outlined mr-3"> schedule </span>
+        <span class="material-symbols-outlined mr-3 text-green-400"> schedule </span>
         <span>{{ currentTime }}</span>
       </p>
     </div>

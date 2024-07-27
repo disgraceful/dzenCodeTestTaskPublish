@@ -4,8 +4,16 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/css/index.css"],
   app: {
-    baseURL: "/testing/",
+    baseURL: "/dzenCodeTestTaskPublish/",
     buildAssetsDir: "assets",
+    head: {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@28,400,1,0",
+        },
+      ],
+    },
   },
   postcss: {
     plugins: {
@@ -13,5 +21,6 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  
   modules: ["@nuxt/image", "nuxt3-vuex-module"],
 });

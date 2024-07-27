@@ -48,7 +48,7 @@
 
     <!-- Delete -->
     <div v-show="!minimized" @click.stop="$emit('delete')">
-      <span class="material-symbols-outlined"> delete </span>
+      <span class="material-symbols-outlined text-gray-500"> delete </span>
     </div>
 
     <!-- Minimize Icon -->
