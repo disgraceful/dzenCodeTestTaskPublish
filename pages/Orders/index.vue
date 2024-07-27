@@ -52,7 +52,10 @@
                 class="w-4 h-4 rounded-full"
                 :class="[getStatusColor(product.status)]"
               ></div>
-              <img class="w-24 h-12 object-contain" :src="product.photo" />
+              <img
+                class="w-24 h-12 object-contain"
+                :src="images[product.photo]"
+              />
 
               <div class="grow">
                 <p class="text-lg underline">{{ product.title }}</p>
@@ -86,6 +89,7 @@ import Modal from "~/components/Shared/Modal.vue";
 import Fab from "~/components/Shared/Fab.vue";
 import Button from "~/components/Shared/Button.vue";
 import type { Order, Product } from "~/store/types";
+import { useImage } from "~/composables/useImage";
 
 const { getters } = useStore();
 
@@ -115,6 +119,8 @@ function showDelete(order: Order) {
   showModal.value = true;
   deleteOrder.value = order;
 }
+
+const { images } = useImage();
 </script>
 
 <style scoped>

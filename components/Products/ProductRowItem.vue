@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center py-2 px-6 border-solid border-2 gap-8 w-max">
     <div class="w-4 h-4 rounded-full" :class="[bgColor]"></div>
-    <img class="w-24 h-12 object-contain" :src="product.photo" />
+    <img class="w-24 h-12 object-contain" :src="images[product.photo]" />
 
     <!-- Title -->
     <div class="w-52">
@@ -75,6 +75,7 @@
 <script lang="ts" setup>
 import { useStore } from "vuex";
 import type { Product } from "~/store/types";
+import { useImage } from "~/composables/useImage";
 
 interface Props {
   product: Product;
@@ -96,4 +97,6 @@ const {
 
 const bgColor = ref(getStatusColor(props.product.status));
 const textColor = ref(getStatusColorText(props.product.status));
+
+const { images } = useImage();
 </script>
