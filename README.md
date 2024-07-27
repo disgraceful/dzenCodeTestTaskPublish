@@ -1,26 +1,19 @@
-# Nuxt 3 Minimal Starter
-
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+# dzenCode Test Task
 
 ## Setup
 
-Make sure to install the dependencies:
+Prerequisites: Node > 18.0.0
+
+Install the dependencies:
 
 ```bash
 # npm
 npm install
 
-# pnpm
-pnpm install
-
 # yarn
 yarn install
 
-# bun
-bun install
 ```
-
-## Development Server
 
 Start the development server on `http://localhost:3000`:
 
@@ -28,48 +21,24 @@ Start the development server on `http://localhost:3000`:
 # npm
 npm run dev
 
-# pnpm
-pnpm run dev
-
 # yarn
 yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+## Used technologies
 
-Build the application for production:
+- Nuxt 3
+- Vue 3
+- Vuex 4
+- Tailwind 3.4
+- Dayjs
 
-```bash
-# npm
-npm run build
+## Folder structure technologies
 
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- <code>components</code> reusable page & ui components
+- <code>composables</code>: use hooks & reusable component logic
+- <code>layouts</code>: Nuxt layouts
+- <code>middleware</code>: route guards for redirects
+- <code>pages</code>: pages for Nuxt routes
+- <code>public</code>: public directory for assets
+- <code>store</code>: vuex store
