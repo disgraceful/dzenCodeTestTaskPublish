@@ -13,5 +13,5 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: ["@nuxt/image"],
+  modules: ["@nuxt/image", "nuxt3-vuex-module"],
 });

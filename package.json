@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@nuxt/image": "^1.7.0",
+    "dayjs": "^1.11.12",
     "nuxt": "^3.12.4",
+    "nuxt3-vuex-module": "^1.1.0",
     "vue": "latest"
   },
   "devDependencies": {
