@@ -1,5 +1,6 @@
 <template>
   <div class="w-full">
+    <!-- Title -->
     <div class="flex items-center gap-4">
       <Fab
         class="p-2 bg-green-600 border-4 border-green-900"
@@ -34,7 +35,45 @@
         :order="selectedOrder"
       />
 
-   
+      <!-- Delete Order Modal -->
+      <Teleport to="body">
+        <Modal
+          :open="showModal"
+          title="Are you sure you want to delete this order?"
+          @close="showModal = false"
+        >
+          <!-- Product List -->
+          <template #body>
+            <div
+              class="flex items-center py-2 px-6 border-solid border-t-2 grow-1 gap-8"
+              v-for="product in deleteOrderProducts"
+            >
+              <div
+                class="w-4 h-4 rounded-full"
+                :class="[getStatusColor(product.status)]"
+              ></div>
+              <NuxtImg class="w-24 h-12 object-cover" :src="product.photo" />
+
+              <div class="grow">
+                <p class="text-lg underline">{{ product.title }}</p>
+                <p class="text-gray-500">{{ product.serialNumber }}</p>
+              </div>
+            </div>
+          </template>
+
+          <!-- Footer -->
+          <template #footer>
+            <div class="flex p-8 justify-end bg-green-500 gap-6">
+              <Button class="text-white" inline @click="showModal = false">
+                Cancel
+              </Button>
+              <Button class="bg-white text-red-600" icon="delete">
+                Delete
+              </Button>
+            </div>
+          </template>
+        </Modal>
+      </Teleport>
     </div>
   </div>
 </template>
