@@ -1,0 +1,40 @@
+<template>
+  <div class="flex items-center py-2 px-6 border-solid border-y-2 grow-1 gap-8">
+    <div class="w-4 h-4 rounded-full" :class="[bgColor]"></div>
+    <NuxtImg class="w-24 h-12 object-cover" :src="product.photo" />
+
+    <!-- Title -->
+    <div class="grow">
+      <p class="text-xl">{{ product.title }}</p>
+      <p class="text-gray-500">{{ product.serialNumber }}</p>
+    </div>
+
+    <!-- Status -->
+    <div class="w-1/6">
+      <p :class="[textColor]">
+        {{ formatStatus(product.status) }}
+      </p>
+    </div>
+
+    <!-- Delete -->
+    <div class="w-1/12 text-right">
+      <span class="material-symbols-outlined"> delete </span>
+    </div>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import type { Product } from "~/store/types";
+import { useProduct } from "~/composables/useProduct";
+
+interface Props {
+  product: Product;
+}
+
+const props = defineProps<Props>();
+
+const { getStatusColor, getStatusColorText, formatStatus } = useProduct();
+
+const bgColor = ref(getStatusColor(props.product.status));
+const textColor = ref(getStatusColorText(props.product.status));
+</script>
