@@ -37,45 +37,12 @@
 
       <!-- Delete Order Modal -->
       <Teleport to="body">
-        <Modal
+        <DeleteOrderModal
           :open="showModal"
-          title="Are you sure you want to delete this order?"
-          @close="showModal = false"
-        >
-          <!-- Product List -->
-          <template #body>
-            <div
-              class="flex items-center py-2 px-6 border-solid border-t-2 grow-1 gap-8"
-              v-for="product in deleteOrderProducts"
-            >
-              <div
-                class="w-4 h-4 rounded-full"
-                :class="[getStatusColor(product.status)]"
-              ></div>
-              <img
-                class="w-24 h-12 object-contain"
-                :src="images[product.photo]"
-              />
-
-              <div class="grow">
-                <p class="text-lg underline">{{ product.title }}</p>
-                <p class="text-gray-500">{{ product.serialNumber }}</p>
-              </div>
-            </div>
-          </template>
-
-          <!-- Footer -->
-          <template #footer>
-            <div class="flex p-8 justify-end bg-green-500 gap-6">
-              <Button class="text-white" inline @click="showModal = false">
-                Cancel
-              </Button>
-              <Button class="bg-white text-red-600" icon="delete">
-                Delete
-              </Button>
-            </div>
-          </template>
-        </Modal>
+          :order-id="orderToDelete?.id"
+          @delete="deleteOrder"
+          @close="closeModal"
+        />
       </Teleport>
     </div>
   </div>
@@ -85,17 +52,13 @@
 import { useStore } from "vuex";
 import OrderRowItem from "~/components/Orders/OrderRowItem.vue";
 import OrderSelectView from "~/components/Orders/OrderSelectView.vue";
-import Modal from "~/components/Shared/Modal.vue";
 import Fab from "~/components/Shared/Fab.vue";
-import Button from "~/components/Shared/Button.vue";
-import type { Order, Product } from "~/store/types";
-import { useImage } from "~/composables/useImage";
+import type { Order } from "~/store/types";
+import DeleteOrderModal from "~/components/Orders/DeleteOrderModal.vue";
 
-const { getters } = useStore();
+const { getters, dispatch } = useStore();
 
 const orders = computed<Order[]>(() => getters.getOrders);
-
-const { getStatusColor } = useProduct();
 
 // select order
 const isOrderSelected = ref(false);
@@ -109,18 +72,27 @@ const unselectOrder = () => {
   selectedOrder.value = null;
 };
 
-// modal
+// delete order
 const showModal = ref(false);
-const deleteOrder = ref<Order | null>(null);
-const deleteOrderProducts = computed<Product[]>(() =>
-  getters.getOrderProducts(deleteOrder.value!.id)
-);
-function showDelete(order: Order) {
+const orderToDelete = ref<Order | null>(null);
+const showDelete = (order: Order) => {
   showModal.value = true;
-  deleteOrder.value = order;
-}
+  orderToDelete.value = order;
+};
 
-const { images } = useImage();
+const closeModal = () => {
+  showModal.value = false;
+  orderToDelete.value = null;
+};
+
+const deleteOrder = () => {
+  if (!orderToDelete.value) {
+    return;
+  }
+
+  dispatch("deleteOrder", orderToDelete.value.id);
+  closeModal();
+};
 </script>
 
 <style scoped>

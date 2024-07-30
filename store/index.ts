@@ -105,6 +105,19 @@ export const getters = {
       state.products.filter((p) => p.order === orderId),
 };
 
-export const mutations = {};
+export const mutations = {
+  deleteOrder(state: StoreState, orderId: number): void {
+    state.orders = state.orders.filter((o) => o.id !== orderId);
+    state.products = state.products.filter((p) => p.order !== orderId);
+  },
 
-export const actions = {};
+  deleteProduct(state: StoreState, productId: number): void {
+    state.products = state.products.filter((p) => p.id !== productId);
+  },
+};
+
+export const actions = {
+  deleteOrder({ commit }, orderId: number) {
+    commit("deleteOrder", orderId);
+  },
+};
