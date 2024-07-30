@@ -28,6 +28,16 @@
       </div>
     </div>
 
+     <!-- Type -->
+     <div class="w-32">
+      <p>{{ product.type }}</p>
+    </div>
+
+    <!-- Specification -->
+    <div class="w-32">
+      <p>{{ product.specification }}</p>
+    </div>
+
     <!-- IsNew -->
     <div class="w-24">
       <p>{{ formatIsNew(product.isNew) }}</p>

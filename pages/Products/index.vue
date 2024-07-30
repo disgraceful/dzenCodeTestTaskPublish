@@ -2,7 +2,7 @@
   <div class="w-full">
     <!-- Title -->
     <div class="flex gap-10 items-center">
-      <h1 class="text-3xl font-bold">Products / {{ products.length }}</h1>
+      <h1 class="text-3xl font-bold">Products / {{ filteredProducts.length }}</h1>
 
       <!-- Select Type -->
       <div class="flex gap-4 items-center">
@@ -69,10 +69,11 @@ const { showModal, productToDelete, showDelete, closeModal, deleteProduct } =
 
 const products = computed<Product[]>(() => getters.getProducts);
 
-const typeOptions = ref(["Monitors", "Motherboards"]);
+const typeOptions = ref(["All", "Monitors", "Motherboards"]);
 const selectedType = ref(typeOptions.value[0]);
 
 const specificationOptions = ref([
+  "All",
   "Specification 1",
   "Specification 2",
   "Specification 3",
@@ -80,11 +81,16 @@ const specificationOptions = ref([
 const selectedSpecification = ref(specificationOptions.value[0]);
 
 const filteredProducts = computed(() =>
-  products.value.filter(
-    (p) =>
-      p.type === selectedType.value &&
-      p.specification === selectedSpecification.value
-  )
+  products.value.filter((p) => {
+    const isTypeMatch =
+      selectedType.value === "All" || p.type === selectedType.value;
+
+    const isSpecificationMatch =
+      selectedSpecification.value === "All" ||
+      p.specification === selectedSpecification.value;
+
+    return isTypeMatch && isSpecificationMatch;
+  })
 );
 </script>
 
