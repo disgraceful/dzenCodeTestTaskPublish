@@ -1,3 +1,4 @@
+import { useStore } from "vuex";
 import type { Price, Product } from "~/store/types";
 
 const STATUS_COLOR = {
@@ -21,6 +22,8 @@ const NEW_STATUS = {
 };
 
 export function useProduct() {
+  const { dispatch } = useStore();
+
   function getProductPrice(products: Product[], isDefault = false): Price {
     const val = products.reduce((acc, curV) => {
       const price = curV.price.find((p) => Boolean(p.isDefault) === isDefault);
@@ -60,6 +63,29 @@ export function useProduct() {
     return `${price.value} ${price.symbol === "USD" ? "$" : price.symbol}`;
   }
 
+  // Delete Product
+  const showModal = ref(false);
+  const productToDelete = ref<Product | null>(null);
+
+  function showDelete(product: Product) {
+    showModal.value = true;
+    productToDelete.value = product;
+  }
+
+  function closeModal() {
+    showModal.value = false;
+    productToDelete.value = null;
+  }
+
+  function deleteProduct() {
+    if (!productToDelete.value) {
+      return;
+    }
+
+    dispatch("deleteProduct", productToDelete.value.id);
+    closeModal();
+  }
+
   return {
     getProductPrice,
     getStatusColor,
@@ -67,5 +93,11 @@ export function useProduct() {
     formatStatus,
     formatIsNew,
     formatPrice,
+    // delete produt
+    showModal,
+    productToDelete,
+    showDelete,
+    closeModal,
+    deleteProduct,
   };
 }

@@ -67,7 +67,12 @@
 
     <!-- Delete -->
     <div class="ml-6">
-      <span class="material-symbols-outlined text-gray-500"> delete </span>
+      <span
+        class="material-symbols-outlined text-gray-500 cursor-pointer"
+        @click="emits('delete', product)"
+      >
+        delete
+      </span>
     </div>
   </div>
 </template>
@@ -82,6 +87,7 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+const emits = defineEmits(["delete"]);
 const { getters } = useStore();
 
 const order = computed(() => getters.getOrderById(props.product.order));

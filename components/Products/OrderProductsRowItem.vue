@@ -18,7 +18,12 @@
 
     <!-- Delete -->
     <div class="w-1/12 text-right">
-      <span class="material-symbols-outlined text-gray-500"> delete </span>
+      <span
+        class="material-symbols-outlined text-gray-500 cursor-pointer"
+        @click="emits('delete', product)"
+      >
+        delete
+      </span>
     </div>
   </div>
 </template>
@@ -33,6 +38,7 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+const emits = defineEmits(["delete"]);
 
 const { getStatusColor, getStatusColorText, formatStatus } = useProduct();
 

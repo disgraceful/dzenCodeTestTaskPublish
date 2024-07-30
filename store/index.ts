@@ -120,4 +120,8 @@ export const actions = {
   deleteOrder({ commit }, orderId: number) {
     commit("deleteOrder", orderId);
   },
+
+  deleteProduct({ commit }, productId: number) {
+    commit("deleteProduct", productId);
+  },
 };

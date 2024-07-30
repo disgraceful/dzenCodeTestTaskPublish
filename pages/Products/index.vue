@@ -37,9 +37,20 @@
           v-for="product in filteredProducts"
           :key="product.id"
           :product="product"
+          @delete="showDelete"
         />
       </div>
     </div>
+
+    <!-- Delete Product Modal -->
+    <Teleport to="body">
+      <DeleteProductModal
+        :open="showModal"
+        :product="productToDelete"
+        @delete="deleteProduct"
+        @close="closeModal"
+      />
+    </Teleport>
   </div>
 </template>
 
@@ -48,8 +59,11 @@ import { useStore } from "vuex";
 import type { Product } from "~/store/types";
 import ProductRowItem from "~/components/Products/ProductRowItem.vue";
 import Select from "~/components/Shared/Select.vue";
+import DeleteProductModal from "~/components/Products/DeleteProductModal.vue";
 
 const { getters } = useStore();
+const { showModal, productToDelete, showDelete, closeModal, deleteProduct } =
+  useProduct();
 
 const products = computed<Product[]>(() => getters.getProducts);
 

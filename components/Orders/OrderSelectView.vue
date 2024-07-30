@@ -23,7 +23,18 @@
       v-for="product in products"
       :key="product.id"
       :product="product"
+      @delete="showDelete"
     />
+
+    <!-- Delete Product Modal -->
+    <Teleport to="body">
+      <DeleteProductModal
+        :open="showModal"
+        :product="productToDelete"
+        @delete="deleteProduct"
+        @close="closeModal"
+      />
+    </Teleport>
   </div>
 </template>
 
@@ -32,6 +43,7 @@ import { useStore } from "vuex";
 import OrderProductsRowItem from "~/components/Products/OrderProductsRowItem.vue";
 import Fab from "../Shared/Fab.vue";
 import type { Order, Product } from "~/store/types";
+import DeleteProductModal from "../Products/DeleteProductModal.vue";
 
 interface Props {
   order: Order;
@@ -41,6 +53,8 @@ const props = defineProps<Props>();
 const emits = defineEmits(["close"]);
 
 const { getters } = useStore();
+const { showModal, productToDelete, showDelete, closeModal, deleteProduct } =
+  useProduct();
 
 const products = computed<Product[]>(() =>
   getters.getOrderProducts(props.order.id)
