@@ -43,14 +43,16 @@
     </div>
 
     <!-- Delete Product Modal -->
-    <Teleport to="body">
-      <DeleteProductModal
-        :open="showModal"
-        :product="productToDelete"
-        @delete="deleteProduct"
-        @close="closeModal"
-      />
-    </Teleport>
+    <ClientOnly>
+      <Teleport to="body">
+        <DeleteProductModal
+          :open="showModal"
+          :product="productToDelete"
+          @delete="deleteProduct"
+          @close="closeModal"
+        />
+      </Teleport>
+    </ClientOnly>
   </div>
 </template>
 

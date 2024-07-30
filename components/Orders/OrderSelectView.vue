@@ -27,14 +27,16 @@
     />
 
     <!-- Delete Product Modal -->
-    <Teleport to="body">
-      <DeleteProductModal
-        :open="showModal"
-        :product="productToDelete"
-        @delete="deleteProduct"
-        @close="closeModal"
-      />
-    </Teleport>
+    <ClientOnly>
+      <Teleport to="body">
+        <DeleteProductModal
+          :open="showModal"
+          :product="productToDelete"
+          @delete="deleteProduct"
+          @close="closeModal"
+        />
+      </Teleport>
+    </ClientOnly>
   </div>
 </template>
 
@@ -43,6 +45,7 @@ import { useStore } from "vuex";
 import OrderProductsRowItem from "~/components/Products/OrderProductsRowItem.vue";
 import Fab from "../Shared/Fab.vue";
 import type { Order, Product } from "~/store/types";
+import { useProduct } from "~/composables/useProduct";
 import DeleteProductModal from "../Products/DeleteProductModal.vue";
 
 interface Props {

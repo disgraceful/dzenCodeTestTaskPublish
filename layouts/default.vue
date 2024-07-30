@@ -12,6 +12,7 @@
 
 <script setup>
 import TopMenu from '~/components/Navigation/TopMenu.vue';
+import NavigationMenu from '~/components/Navigation/NavigationMenu.vue';
 </script>
 
 <style scoped>

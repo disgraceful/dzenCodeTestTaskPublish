@@ -31,19 +31,21 @@
       <OrderSelectView
         v-if="isOrderSelected && selectedOrder"
         class="w-3/5 pt-5"
-        @close="unselectOrder()"
         :order="selectedOrder"
+        @close="unselectOrder()"
       />
 
       <!-- Delete Order Modal -->
-      <Teleport to="body">
-        <DeleteOrderModal
-          :open="showModal"
-          :order-id="orderToDelete?.id"
-          @delete="deleteOrder"
-          @close="closeModal"
-        />
-      </Teleport>
+      <ClientOnly>
+        <Teleport to="body">
+          <DeleteOrderModal
+            :open="showModal"
+            :order-id="orderToDelete?.id"
+            @delete="deleteOrder"
+            @close="closeModal"
+          />
+        </Teleport>
+      </ClientOnly>
     </div>
   </div>
 </template>
